@@ -26,6 +26,7 @@ set ignorecase
 set list
 set listchars=tab:>\ ,eol:\ ,trail:-
 set cursorline
+highlight CursorLine cterm=none ctermbg=236
 
 set wildmenu
 set fileencodings=iso-2022-jp,utf-8,cp932,iso-2022-jp,euc-jp
