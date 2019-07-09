@@ -98,66 +98,90 @@ noremap <C-Space>d :scscope find d <C-R>=expand("<cword>")<CR><CR>
 "-------------------------------------------------------------------------------
 filetype off
 
-" Note: Skip initialization for vim-tiny or vim-small.
-if 0 | endif
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
+if &compatible
+  set nocompatible
+endif
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-  " set runtimepath+=$HOME/vimfiles/bundle/neobundle.vim/
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
+
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+  let g:deoplete#enable_at_startup = 1
+
+  call dein#end()
+  call dein#save_state()
 endif
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-"call neobundle#begin(expand('~/vimfiles/bundle/'))
-"let g:neobundle_default_git_protocol='https'
-"let g:neobundle#types#git#default_protocol='https'
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
-" Recommended to install
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'thinca/vim-visualstar'
-NeoBundle 'thinca/vim-quickrun'
-" vim-scripts repos
-NeoBundle 'bufferlist.vim'
-" NeoBundle 'taglist.vim'
-NeoBundle 'majutsushi/tagbar'
-" NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'Lokaltog/vim-easymotion'
-"NeoBundle 'dag/vim2hs'
-
-call neobundle#end()
-
-" Required:
 filetype plugin indent on
+syntax enable
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-
-"-------------------------------------------------------------------------------
-" neocomplete.vim
-"-------------------------------------------------------------------------------
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+" " Note: Skip initialization for vim-tiny or vim-small.
+" if 0 | endif
+" if has('vim_starting')
+"   if &compatible
+"     set nocompatible               " Be iMproved
+"   endif
+" 
+"   " Required:
+"   set runtimepath+=~/.vim/bundle/neobundle.vim/
+"   " set runtimepath+=$HOME/vimfiles/bundle/neobundle.vim/
+" endif
+" 
+" " Required:
+" call neobundle#begin(expand('~/.vim/bundle/'))
+" "call neobundle#begin(expand('~/vimfiles/bundle/'))
+" "let g:neobundle_default_git_protocol='https'
+" "let g:neobundle#types#git#default_protocol='https'
+" 
+" " Let NeoBundle manage NeoBundle
+" " Required:
+" NeoBundleFetch 'Shougo/neobundle.vim'
+" 
+" " My Bundles here:
+" " Refer to |:NeoBundle-examples|.
+" " Note: You don't set neobundle setting in .gvimrc!
+" " Recommended to install
+" NeoBundle 'Shougo/neocomplete.vim'
+" NeoBundle 'Shougo/neosnippet.vim'
+" NeoBundle 'Shougo/neosnippet-snippets'
+" NeoBundle 'Shougo/neomru.vim'
+" NeoBundle 'Shougo/unite.vim'
+" NeoBundle 'Shougo/vimfiler.vim'
+" NeoBundle 'Shougo/vimshell.vim'
+" NeoBundle 'thinca/vim-visualstar'
+" NeoBundle 'thinca/vim-quickrun'
+" " vim-scripts repos
+" NeoBundle 'bufferlist.vim'
+" " NeoBundle 'taglist.vim'
+" NeoBundle 'majutsushi/tagbar'
+" " NeoBundle 'airblade/vim-gitgutter'
+" NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'itchyny/lightline.vim'
+" NeoBundle 'mattn/emmet-vim'
+" NeoBundle 'Lokaltog/vim-easymotion'
+" "NeoBundle 'dag/vim2hs'
+" 
+" call neobundle#end()
+" 
+" " Required:
+" filetype plugin indent on
+" 
+" " If there are uninstalled bundles found on startup,
+" " this will conveniently prompt you to install them.
+" NeoBundleCheck
+" 
+" "-------------------------------------------------------------------------------
+" " neocomplete.vim
+" "-------------------------------------------------------------------------------
+" " Use neocomplete.
+" let g:neocomplete#enable_at_startup = 1
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
 
