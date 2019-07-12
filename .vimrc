@@ -119,7 +119,21 @@ if dein#load_state('~/.cache/dein')
   call dein#save_state()
 endif
 
+if has('nvim')
+  call dein#add('Shougo/deoplete.nvim')
+elseif has('lua')
+"   call dein#add('Shougo/neocomplete', {
+"   \   'depends' : ['neosnippet', 'context_filetype.vim'],
+"   \   'on_i' : 1,
+"   \})
+endif
+
 filetype plugin indent on
+
+if dein#tap('deoplete.nvim')
+  let g:deoplete#enable_at_startup = 1
+endif
+
 syntax enable
 
 " " Note: Skip initialization for vim-tiny or vim-small.
