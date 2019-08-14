@@ -29,12 +29,13 @@ set cursorline
 highlight CursorLine cterm=none ctermbg=236
 
 set wildmenu
-set fileencodings=iso-2022-jp,utf-8,cp932,iso-2022-jp,euc-jp
+set fileencodings=utf-8,cp932,iso-2022-jp,euc-jp
 set fileformats=dos,unix,mac
 "set nowritebackup
 "set nobackup
 set backupdir=~/.vim/backup
 "set noundofile
+set undofile
 set undodir=~/.vim/undo
 set number
 set ruler
