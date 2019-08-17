@@ -29,7 +29,7 @@ set cursorline
 highlight CursorLine cterm=none ctermbg=236
 
 set wildmenu
-set fileencodings=utf-8,cp932,iso-2022-jp,euc-jp
+set fileencodings=utf-8,iso-2022-jp,cp932,euc-jp
 set fileformats=dos,unix,mac
 "set nowritebackup
 "set nobackup
@@ -93,6 +93,7 @@ noremap <C-Space>f :scscope find f <C-R>=expand("<cfile>")<CR><CR>
 noremap <C-Space>i :scscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 noremap <C-Space>d :scscope find d <C-R>=expand("<cword>")<CR><CR>
 
+" Defx
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
@@ -159,6 +160,23 @@ function! s:defx_my_settings() abort
   \ defx#do_action('change_vim_cwd')
 endfunction
 
+" Denite mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
+
 "-------------------------------------------------------------------------------
 " Plugins management
 "-------------------------------------------------------------------------------
@@ -175,6 +193,8 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('Shougo/deoplete.nvim')
+  call dein#add('Shougo/defx.nvim')
+  call dein#add('Shougo/denite.nvim')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
