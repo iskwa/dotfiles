@@ -14,11 +14,13 @@ set runtimepath^=~/.vim
 set history=100
 set backspace=indent,eol,start
 " next 2 lines does not work well..
-" set visualbell
-" set t_vb=
+set novisualbell
+set t_vb=
 "-------------------------------------------------------------------------------
 " Search Function Settings
 "-------------------------------------------------------------------------------
+set grepprg=jvgrep
+let $JVGREP_OUTPUT_ENCODING = 'sjis'
 set ignorecase
 "-------------------------------------------------------------------------------
 " Display Settings
@@ -29,7 +31,8 @@ set cursorline
 highlight CursorLine cterm=none ctermbg=236
 
 set wildmenu
-set fileencodings=iso-2022-jp,utf-8,cp932,iso-2022-jp,euc-jp
+set fileencoding=utf-8
+set fileencodings=utf-8,iso-2022-jp,cp932,iso-2022-jp,euc-jp
 set fileformats=dos,unix,mac
 "set nowritebackup
 "set nobackup
